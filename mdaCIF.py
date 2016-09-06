@@ -12,8 +12,14 @@ def unpack_symmetry(mol):
 
 
 class CIFReader(SingleFrameReader):
+    """Read coordinate information from a CIF file
+
+    Reads
+     - coordinates
+     - unitcell information
+    """
     format = 'CIF'
-    
+
     def _read_first_frame(self):
         pbmol = pybel.readfile('cif', self.filename).next()
         unpack_symmetry(pbmol)
@@ -29,15 +35,22 @@ class CIFReader(SingleFrameReader):
         alpha = pbmol.unitcell.GetAlpha()
         beta = pbmol.unitcell.GetBeta()
         gamma = pbmol.unitcell.GetGamma()
-        
-        ts._unitcell[:] = A, B, C, alpha, beta, gamma
-            
+
+        ts.dimensions = A, B, C, alpha, beta, gamma
+
         return ts
 
 
 class CIFParser(TopologyReader):
+    """Parses a CIF file and creates a MDAnalysis topology
+
+    Reads
+     - name
+     - mass
+     - charge
+    """
     format = 'CIF'
-    
+
     def parse(self):
         pbmol = pybel.readfile('cif', self.filename).next()
         unpack_symmetry(pbmol)
