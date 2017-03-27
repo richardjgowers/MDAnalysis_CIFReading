@@ -8,8 +8,8 @@ Reads cif files and unpacks all symmetries
 
 To install these is probably easiest via::
 
- conda install -c openbabel openbabel=2.4.1 
- conda install -c mdanalysis mdanalysis=0.15.0 
+ * conda install -c openbabel openbabel=2.4.1 
+ * conda install -c mdanalysis mdanalysis=0.15.0 
 
 ## Usage
 
