@@ -30,7 +30,7 @@ class CIFReader(SingleFrameReaderBase):
     format = 'CIF'
 
     def _read_first_frame(self):
-        pbmol = pybel.readfile('cif', self.filename).next()
+        pbmol = next(pybel.readfile('cif', self.filename))
         unpack_symmetry(pbmol)
         
         self.n_atoms = n_atoms = len(pbmol.atoms)
@@ -60,8 +60,8 @@ class CIFParser(TopologyReaderBase):
     """
     format = 'CIF'
 
-    def parse(self):
-        pbmol = pybel.readfile('cif', self.filename).next()
+    def parse(self, **kwargs):
+        pbmol = next(pybel.readfile('cif', self.filename))
         unpack_symmetry(pbmol)
         
         natoms = len(pbmol.atoms)
