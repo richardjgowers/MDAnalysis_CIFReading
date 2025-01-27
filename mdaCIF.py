@@ -12,7 +12,7 @@ from MDAnalysis.core.topologyattrs import (
     Segids,
 )
 
-import pybel
+from openbabel import pybel
 import openbabel
 fillUC = openbabel.OBOp.FindType('fillUC')
 
